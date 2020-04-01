@@ -1,7 +1,20 @@
+"""
+Dataloader for SeqGAN
+
+author: ABdollah Rida
+"""
+
+# Imports
+
 import numpy as np
 
-
 class Gen_Data_loader():
+    """
+    Dataloader for the generator.
+
+    Needs to be intialized with batch size.
+    """
+
     def __init__(self, batch_size):
         self.batch_size = batch_size
         self.token_stream = []
@@ -31,6 +44,12 @@ class Gen_Data_loader():
 
 
 class Dis_dataloader():
+    """
+    Dataloader for the discriminator.
+
+    Needs to be initialized with locations of positive and negative files.
+    """
+
     def __init__(self, batch_size):
         self.batch_size = batch_size
         self.sentences = np.array([])
@@ -82,4 +101,3 @@ class Dis_dataloader():
 
     def reset_pointer(self):
         self.pointer = 0
-

@@ -1,8 +1,23 @@
+"""
+Generator class from the SeqGAN paper.
+
+author: Abdollah Rida
+"""
+
+# Imports
+
 import tensorflow as tf
 from tensorflow.python.ops import tensor_array_ops, control_flow_ops
 
+# Generator class
 
 class Generator(object):
+    """
+    Generator class
+
+    Needs to be initialized with embedding dimension, batch_size, hidden dimension, and the start token value.
+    """
+
     def __init__(self, num_emb, batch_size, emb_dim, hidden_dim,
                  sequence_length, start_token,
                  learning_rate=0.01, reward_gamma=0.95):
@@ -102,9 +117,10 @@ class Generator(object):
         self.pretrain_grad, _ = tf.clip_by_global_norm(tf.gradients(self.pretrain_loss, self.g_params), self.grad_clip)
         self.pretrain_updates = pretrain_opt.apply_gradients(zip(self.pretrain_grad, self.g_params))
 
-        #######################################################################################################
+        #######################################################################
         #  Unsupervised Training
-        #######################################################################################################
+        #######################################################################
+
         self.g_loss = -tf.reduce_sum(
             tf.reduce_sum(
                 tf.one_hot(tf.to_int32(tf.reshape(self.x, [-1])), self.num_emb, 1.0, 0.0) * tf.log(

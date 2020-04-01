@@ -1,7 +1,16 @@
+"""
+Rollout policy following the paper SeqGAN
+
+author: Abdollah Rida
+"""
+
+# Imports
+
 import tensorflow as tf
 from tensorflow.python.ops import tensor_array_ops, control_flow_ops
 import numpy as np
 
+# Rollout
 
 class ROLLOUT(object):
     def __init__(self, lstm, update_rate):

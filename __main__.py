@@ -20,8 +20,8 @@ import cPickle
 
 # Tensorboard
 
-pre_summary_writer = tf.summary.create_file_writer('save/pre')
-adv_summary_writer = tf.summary.create_file_writer('save/adv')
+pre_summary_writer = tf.summary.FileWriter('save/pre')
+adv_summary_writer = tf.summary.FileWriter('save/adv')
 
 ###############################################################################
 #  Generator  Hyper-parameters
